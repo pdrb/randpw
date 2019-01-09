@@ -1,16 +1,16 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-# randpw 0.1
+# randpw 0.2
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 20171227
+# date: 20190109
 
 import random
 import string
 import optparse
 
 
-version = '0.1'
+version = '0.2'
 
 
 # Parse and validate arguments
@@ -99,9 +99,8 @@ def random_pw(size=16, chars='mixed', lowercase=False, uppercase=False):
 def cli():
     options = get_parsed_args()
     for _ in range(options.count):
-        print random_pw(
-            options.size, options.chars, options.lower, options.upper
-        )
+        print(random_pw(options.size, options.chars, options.lower,
+              options.upper))
 
 
 # Run cli function if invoked from shell

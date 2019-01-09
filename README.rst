@@ -1,44 +1,45 @@
+|Downloads|
+
 randpw
 ======
 
 Random password generator.
 
-Simple example:
-
-::
+Simple example::
 
     $ randpw
     Ex8PfCcIvFeT5GMT
 
 
+Notes
+=====
+
+- Works on Python 2 and Python 3
+- Uses only Python standard library for maximum compatibility
+
+
 Install
--------
+=======
 
-Install using pip:
-
-::
+Install using pip::
 
     pip install randpw
 
 or
 
-Download and set executable permission on the script file:
-
-::
+Download and set executable permission on the script file::
 
     chmod +x randpw.py
 
 or
 
-Download and run using the python interpreter:
-
-::
+Download and run using the python interpreter::
 
     python randpw.py
 
 
 Usage
------
+=====
 
 ::
 
@@ -59,36 +60,29 @@ Usage
 
 
 Examples
---------
+========
 
-Random password using only letters:
-
-::
+Random password using only letters::
 
     $ randpw -c letters
+    LqmTdVhrlflQanzg
 
-32 characters password:
-
-::
+32 characters password::
 
     $ randpw -s 32
+    PPb9Qs3HPYDn3T3zddEeSfAuRVXjTHHa
 
-Generate 3 uppercase letters passwords:
-
-::
+Generate 3 uppercase letters passwords::
 
     $ randpw -n 3 -u
+    FUU1VKT2FNHJ9NEX
+    BHIX2CBDXBPZELTZ
+    BHKENUKXWMA4XFX0
 
-Lowercase password cointaing letters, numbers and punctuation:
-
-::
+Lowercase password cointaing letters, numbers and punctuation::
 
     $ randpw -c full -l
+    nq6g'2/x23v~ykf@
 
 
-Notes
------
-
-- Works on Python 2
-- Tested on Linux and Windows, but should work on all platforms
-- Uses only Python standard library for maximum compatibility
+.. |Downloads| image:: https://pepy.tech/badge/randpw
