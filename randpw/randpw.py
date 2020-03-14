@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 
-# randpw 0.2
+# randpw 0.3
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 20190109
+# date: 20200314
 
 import random
+import os
 import string
 import optparse
 
 
-version = '0.2'
+version = '0.3'
 
 
 # Parse and validate arguments
@@ -18,7 +19,7 @@ def get_parsed_args():
     usage = 'usage: %prog [options]'
     # Create the parser
     parser = optparse.OptionParser(
-        description="random password generator",
+        description="random password and passphrase generator",
         usage=usage, version=version
     )
     parser.add_option(
@@ -44,6 +45,14 @@ def get_parsed_args():
         '-u', '--upper', action='store_true', default=False,
         help="uppercase letters (default: disabled)"
     )
+    parser.add_option(
+        '-p', '--passphrase', action='store_true', default=False,
+        help="generate passphrase instead (default: disabled)"
+    )
+    parser.add_option(
+        '-w', dest='words', default=6, type=int,
+        help='number of passphrase words (default: %default)'
+    )
 
     # Parse the args
     (options, args) = parser.parse_args()
@@ -57,12 +66,30 @@ def get_parsed_args():
         parser.error('size must be a positive number')
     if options.count < 1:
         parser.error('count must be a positive number')
+    if options.words < 1:
+        parser.error('words must be a positive number')
     if options.lower and options.upper:
         parser.error(
             'lowercase and uppercase letters enabled, enable just one or none'
         )
 
     return options
+
+
+# Load words from file
+def load_words(fpath):
+    with open(fpath, 'r') as f:
+        words = f.read().splitlines()
+    return words
+
+
+# Create random passphrase
+def random_pp(words, size=6, uppercase=False):
+    passphrase = ' '.join(
+        random.SystemRandom().choice(words) for _ in range(size))
+    if uppercase:
+        passphrase = passphrase.upper()
+    return passphrase.strip()
 
 
 # Create random password
@@ -98,9 +125,17 @@ def random_pw(size=16, chars='mixed', lowercase=False, uppercase=False):
 # Main CLI
 def cli():
     options = get_parsed_args()
-    for _ in range(options.count):
-        print(random_pw(options.size, options.chars, options.lower,
-              options.upper))
+
+    if options.passphrase:
+        wordlist_path = os.path.join(os.path.abspath(
+            os.path.dirname(__file__)), 'wordlist.txt')
+        words = load_words(wordlist_path)
+        for _ in range(options.count):
+            print(random_pp(words, options.words, options.upper))
+    else:
+        for _ in range(options.count):
+            print(random_pw(options.size, options.chars, options.lower,
+                  options.upper))
 
 
 # Run cli function if invoked from shell

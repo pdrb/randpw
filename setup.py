@@ -8,20 +8,20 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 
-version = '0.2'
+version = '0.3'
 
 
 setup(
     name='randpw',
     version=version,
-    description='Random password generator',
+    description='Random password and passphrase generator',
     long_description=long_description,
     author='Pedro Buteri Gonring',
     author_email='pedro@bigode.net',
     url='https://github.com/pdrb/randpw',
     license='MIT',
     classifiers=[],
-    keywords='random password generator',
+    keywords='random password passphrase generator',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
     entry_points={
         'console_scripts': ['randpw=randpw.randpw:cli'],
