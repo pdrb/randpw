@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# randpw 0.3
+# randpw 0.3.1
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
 # date: 20200314
@@ -11,7 +11,7 @@ import string
 import optparse
 
 
-version = '0.3'
+version = '0.3.1'
 
 
 # Parse and validate arguments
