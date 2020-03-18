@@ -15,7 +15,40 @@ Simple passphrase example::
     $ randpw -p
     unlit race mandatory kelp kindling carmaker
 
-`EFF's long word list <https://www.eff.org/pt-br/deeplinks/2016/07/new-wordlists-random-passphrases>`_ is used for generating the passphrase.
+Show information about the generated password::
+
+    $ randpw -v
+    tshvJXTYPWtAjyy7
+
+
+    Info:
+    ----------------------------------------
+    - Password Cardinality: 62
+    - Password Length: 16
+    - Password Entropy: 95.3 bits
+    - Password Strength: Strong
+    - Estimated time to crack using a supercomputer with roughly
+    one trillion guesses per second: 687 433 358 years
+
+Generate a pt-br passphrase and show information about it::
+
+    $ randpw -p -i pt-br -v
+    namorada demandou manteiga bica suavidade imponente
+
+
+    Info:
+    ----------------------------------------
+    - Wordlist Size: 7776
+    - Passphrase Words: 6
+    - Password Entropy: 77.5 bits
+    - Password Strength: Strong
+    - Estimated time to crack using a supercomputer with roughly
+    one trillion guesses per second: 3 187 years
+
+`EFF's long word list <https://www.eff.org/pt-br/deeplinks/2016/07/new-wordlists-random-passphrases>`_ is used for generating the english passphrase.
+
+Brazilian Portuguese passphrase is generated using a pt-br wordlist curated by me using the
+most frequent spoken words, removing accented and words bigger than 9 and smaller than 4 characters.
 
 
 Notes
@@ -38,7 +71,7 @@ Usage
 
 ::
 
-    Usage: randpw.py [options]
+    Usage: randpw [options]
 
     random password and passphrase generator
 
@@ -54,6 +87,10 @@ Usage
       -u, --upper       uppercase letters (default: disabled)
       -p, --passphrase  generate passphrase instead (default: disabled)
       -w WORDS          number of passphrase words (default: 6)
+      -i IDIOM          idiom of the wordlist: 'en' or 'pt-br' (default: en)
+      -v, --verbose     show some information about the generated passwords like
+                        entropy, strength and estimated time to crack (default:
+                        disabled)
 
 
 Examples
